@@ -22,7 +22,7 @@ class russianpostcarrier extends CarrierModule {
 
         $this->name = 'russianpostcarrier';
         $this->tab = 'shipping_logistics';
-        $this->version = '1.0.6';
+        $this->version = '1.2';
         $this->author = 'Serge Rodovnichenko';
 
         parent::__construct();

@@ -35,23 +35,6 @@ class RussianPost extends ObjectModel {
         $this->tableWithPrefix = _DB_PREFIX_ . RussianPost::$definition['table'];
     }
 
-    public function createTable() {
-
-        $sql = "CREATE TABLE IF NOT EXISTS `{$this->tableWithPrefix}` (" .
-                '`id` INT(11) NOT NULL AUTO_INCREMENT,' .
-                '`id_state` INT(11) NOT NULL,' .
-                '`id_post_zone` INT(11) NOT NULL,' .
-                '`active` INT(11) NOT NULL,' .
-                'PRIMARY KEY (`id`)' .
-                ') DEFAULT CHARSET=utf8;';
-
-        if (!RussianPost::$db->execute($sql, false)) {
-            return false;
-        }
-
-        return true;
-    }
-
     public function dropTable() {
 
         $sql = "DROP TABLE IF EXISTS `{$this->tableWithPrefix}`;";
