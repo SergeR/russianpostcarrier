@@ -3,6 +3,7 @@
 class RussianPost extends ObjectModel {
 
     public $id;
+    public $id_russian_post;
     public $id_state;
     public $id_post_zone;
     public $active;
@@ -10,7 +11,7 @@ class RussianPost extends ObjectModel {
     protected $dbconn;
     public static $definition = array(
         'table' => 'russian_post',
-        'primary' => 'id',
+        'primary' => 'id_russian_post',
         'multilang' => false,
         'fields' => array(
             'id_state' => array(
@@ -62,21 +63,6 @@ class RussianPost extends ObjectModel {
         return $row['id_post_zone'];
 
         //$row = $this->dbconn->getRow("SELECT ");
-    }
-
-    // Пришлось перегрузить этот метод. Колонка в таблице
-    // у нас не по правилам называется.
-    // Заодно довавил LIMIT на всякий случай
-    // FIXME: Поле в таблице потом переименовать! И этот метод убрать!
-    public static function existsInDatabase($id_entity, $table) {
-
-        $row = Db::getInstance()->getRow(
-                "SELECT `id` FROM `" . _DB_PREFIX_ . $table . "` e " .
-                "WHERE `e`.`id` = " . (int) $id_entity . " " .
-                "LIMIT 1"
-        );
-
-        return isset($row['id']);
     }
 
 }
