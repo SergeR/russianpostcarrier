@@ -12,6 +12,8 @@ require_once(_PS_MODULE_DIR_ . 'russianpostcarrier/models/RussianPost.php');
 
 class russianpostcarrier extends CarrierModule {
 
+    const INSTALL_SQL_FILE = 'install.sql';
+
     private $model;
     // Хоть и неочевидно, но здесь это должно быть. Кем-то присваивается.
     public $id_carrier;
@@ -98,10 +100,26 @@ class russianpostcarrier extends CarrierModule {
             return false;
         }
 
-        if (!$this->RussianPost->createTable()) {
-
+        /**
+         * Database table creation
+         */
+        if (!file_exists(dirname(__FILE__).'/'.self::INSTALL_SQL_FILE)) {
             $this->uninstallCarrier();
+            return FALSE;
         }
+        else if (!$sql = file_get_contents(dirname(__FILE__).'/'.self::INSTALL_SQL_FILE)) {
+            $this->uninstallCarrier();
+            return FALSE;
+        }
+
+        $sql = str_replace(array('PREFIX_', 'ENGINE_TYPE'), array(_DB_PREFIX_, _MYSQL_ENGINE_), $sql);
+        $sql = preg_split("/;\s*[\r\n]+/", trim($sql));
+
+        foreach ($sql as $query)
+            if (!Db::getInstance()->execute(trim($query))) {
+                $this->uninstallCarrier();
+                return FALSE;
+            }
 
         // Здесь мы создаем пункт вехнего подменю.
         // Сначала проверим, есть-ли оно уже
