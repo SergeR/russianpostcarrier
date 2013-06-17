@@ -276,13 +276,13 @@ class russianpostcarrier extends CarrierModule {
             $rangePrice = new RangePrice();
             $rangePrice->id_carrier = $carrier->id;
             $rangePrice->delimiter1 = '0';
-            $rangePrice->delimiter2 = '100500';
+            $rangePrice->delimiter2 = '31';
             $rangePrice->add();
 
             $rangeWeight = new RangeWeight();
             $rangeWeight->id_carrier = $carrier->id;
             $rangeWeight->delimiter1 = '0';
-            $rangeWeight->delimiter2 = '100500';
+            $rangeWeight->delimiter2 = '31';
             $rangeWeight->add();
 
             $zones = Zone::getZones(true);

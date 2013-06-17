@@ -48,12 +48,6 @@ class AdminRussianPostController extends ModuleAdminController {
             'configuration_options' => array(
                 'title' => $this->l('Common module configuration'),
                 'fields' => array(
-                    'RUSSIANPOST_MAX_WEIGHT' => array(
-                        'title' => $this->l('Maximum weight of the parcel (kg)'),
-                        'cast' => 'floatval',
-                        'type' => 'text',
-                        'validation' => 'isUnsignedFloat',
-                    ),
                     'RUSSIANPOST_PONDROUS_WEIGHT' => array(
                         'title' => $this->l('Pondreous parcel (kg)'),
                         'cast' => 'floatval',

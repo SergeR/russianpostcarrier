@@ -20,11 +20,6 @@
             </select>
         </div>
 
-        <label for="max_weight_input">Максимальный вес отправления</label>
-        <div class="margin-form">
-            <input type="text" value="20" id="max_weight_input" />
-        </div>
-
         <label for="hard_weight_input">Вес усложненной тарификации</label>
         <div class="margin-form">
             <input type="text" value="10" id="hard_weight_input" />
