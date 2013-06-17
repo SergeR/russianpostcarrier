@@ -3,6 +3,8 @@
  * Changes since 1.0.6
  *
  *  [*] id column renamed to id_russian_post
+ *
+ * @todo DROP and CREATE new PRIMARY index!
  */
 
 if (!defined(_PS_VERSION_))
