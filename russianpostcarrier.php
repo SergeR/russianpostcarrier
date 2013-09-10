@@ -43,12 +43,14 @@ class russianpostcarrier extends CarrierModule {
         $addr = new Address($params->id_address_delivery);
 
         // TODO: проверить куки, а не рубить с плеча!
-        if (!Validate::isLoadedObject($addr))
-            return false;
-
-        $rp_zone = $this->RussianPost->getRpZone($addr);
-        if ($rp_zone == 0)
-            return false;
+	// Если адреса еще нет, будет первая зона
+        if (!Validate::isLoadedObject($addr)) {
+            $rp_zone = 1;
+	} else {
+            $rp_zone = $this->RussianPost->getRpZone($addr);
+	    if ($rp_zone == 0)
+    	        return false;
+	}
 
         $weight = $params->getTotalWeight();
 
